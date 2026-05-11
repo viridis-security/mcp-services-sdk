@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "viridis-mcp-client"
+version = "0.1.0"
+description = "Python SDK for Viridis MCP services. Aristotle-verified attribution-enforcement primitives for AI agents."
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    {name = "Viridis North LLC", email = "viridissecurity1@gmail.com"}
+]
+keywords = ["viridis", "mcp", "ai-security", "injection-detection", "agent-security", "alignment", "attribution"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "httpx>=0.27.0",
+]
+
+[project.urls]
+Homepage = "https://mcp.viridis-security.com"
+Documentation = "https://mcp.viridis-security.com/docs"
+Repository = "https://github.com/viridis-security/mcp-services-sdk"
+Issues = "https://github.com/viridis-security/mcp-services-sdk/issues"
+
+[tool.setuptools.packages.find]
+include = ["viridis_mcp_client*"]
