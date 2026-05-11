@@ -1,0 +1,35 @@
+{
+  "name": "@viridis/mcp-client",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for Viridis MCP services. Open source. Hosted endpoint at https://mcp.viridis-security.com",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viridis-security/mcp-services-sdk.git",
+    "directory": "sdk/typescript"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "keywords": [
+    "viridis",
+    "mcp",
+    "ai-security",
+    "injection-detection",
+    "agent-security",
+    "alignment"
+  ],
+  "homepage": "https://mcp.viridis-security.com",
+  "bugs": {
+    "url": "https://github.com/viridis-security/mcp-services-sdk/issues"
+  }
+}
