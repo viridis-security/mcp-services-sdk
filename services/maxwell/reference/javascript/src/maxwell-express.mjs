@@ -189,6 +189,6 @@ function sendChallenge(res, { serverSecret, contextId, difficulty, ttlSeconds, e
     res.status(401).json({
         error: error || "maxwell_challenge_required",
         challenge,
-        spec: "https://github.com/viridis-security/maxwells-defense",
+        spec: "https://github.com/viridis-security/mcp-services-sdk/tree/main/services/maxwell/reference",
     });
 }

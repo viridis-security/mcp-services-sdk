@@ -169,7 +169,7 @@ class FastAPIMaxwellMiddleware:
             {
                 "error": error or "maxwell_challenge_required",
                 "challenge": challenge.to_dict(),
-                "spec": "https://github.com/viridis-security/maxwells-defense",
+                "spec": "https://github.com/viridis-security/mcp-services-sdk/tree/main/services/maxwell/reference",
             }
         ).encode("utf-8")
         headers = [
@@ -253,7 +253,7 @@ class WSGIMaxwellMiddleware:
             {
                 "error": error or "maxwell_challenge_required",
                 "challenge": challenge.to_dict(),
-                "spec": "https://github.com/viridis-security/maxwells-defense",
+                "spec": "https://github.com/viridis-security/mcp-services-sdk/tree/main/services/maxwell/reference",
             }
         ).encode("utf-8")
         start_response(

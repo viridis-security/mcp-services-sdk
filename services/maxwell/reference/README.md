@@ -9,6 +9,8 @@ Apache-2.0. Maintained by [Viridis Security](https://github.com/viridis-security
 [![spec](https://img.shields.io/badge/spec-T--IB--09-purple)](THEOREMS.md)
 [![Aristotle](https://img.shields.io/badge/Aristotle-verified-success)](THEOREMS.md#t-ib-09--adversarial-dissipation-theorem)
 
+![Maxwell's Defense in action](docs/assets/maxwell-demo.gif)
+
 ---
 
 ## The asymmetry

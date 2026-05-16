@@ -4,8 +4,14 @@
 
 This is the public, open-source SDK for the [Viridis MCP](https://mcp.viridis-security.com) services. The hosted service implementation is proprietary; this repo contains everything you need to integrate.
 
+> 🆕 **Reference implementation of MCP-10 Maxwell is now in this repo** — Apache-2.0, theorem-backed, runnable in <1 minute. Adaptive proof-of-work defense that makes AI-spam pay the energy bill instead of your triagers. See [`services/maxwell/reference/`](services/maxwell/reference/).
+>
+> ![Maxwell demo](services/maxwell/reference/docs/assets/maxwell-demo.gif)
+
 ```bash
 npm install @viridis/mcp-client
+# or, for the standalone Maxwell reference:
+pip install maxwells-defense
 ```
 
 ```typescript
@@ -29,7 +35,7 @@ if (r.recommendedAction === "reject") {
 |---|---|---|
 | Injection Detector (MCP-02) | `POST /v1/injection/detect` | T-IB-02 + T-IB-06 + T-IB-01 |
 | Canon Scanner (MCP-03) | `POST /v1/canon/scan` | T-IB-05 |
-| Viridis Maxwell (MCP-10) | `POST /v1/maxwell/{challenge,verify,bind,decoy}` | T-IB-09 + T-IB-02 |
+| Viridis Maxwell (MCP-10) | `POST /v1/maxwell/{challenge,verify,bind,decoy}` + [reference SDK](services/maxwell/reference/) | T-IB-09 + T-IB-02 |
 
 Each backing theorem is formally verified in Lean 4 by [Aristotle (Harmonic)](https://harmonic.fun). See the [corpus paper](https://github.com/viridis-security/corpus) (forthcoming) for proofs.
 
