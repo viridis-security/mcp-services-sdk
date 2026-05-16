@@ -275,7 +275,7 @@ def solve_challenge(challenge: Challenge, *, max_iterations: int | None = None) 
     """
     target_bits = challenge.difficulty
     if max_iterations is None:
-        max_iterations = max(1024, 4 * (1 << target_bits))
+        max_iterations = max(1024, 32 * (1 << target_bits))
 
     server_nonce = challenge.server_nonce
     for _ in range(max_iterations):
