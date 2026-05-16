@@ -11,7 +11,7 @@ This is the public, open-source SDK for the [Viridis MCP](https://mcp.viridis-se
 ```bash
 npm install @viridis/mcp-client
 # or, for the standalone Maxwell reference:
-pip install maxwells-defense
+pip install git+https://github.com/viridis-security/maxwells-defense.git
 ```
 
 ```typescript
