@@ -164,7 +164,8 @@ For `maxwell.bind`-protected actions, the legitimate principal includes a receip
 - [x] T-IB-09 submitted to Aristotle (project `f6dd4bcd-b9f2-4818-940f-c6f52fd360c0`)
 - [x] **T-IB-09 ✅ PROVED by Aristotle (2026-05-10) — 4/4 theorems verified, standard axioms only**
 - [x] Service scaffold (this directory)
-- [x] PoW challenge implementation (Argon2id)
+- [x] **Reference SDK (Apache-2.0) — SHA-256 hashcash variant — see `reference/` directory** (added 2026-05-16)
+- [x] PoW challenge implementation (Argon2id, hosted-tier production)
 - [ ] Decoy infrastructure
 - [ ] Receipt-binding service
 - [ ] Storage layer (Postgres + Redis)
