@@ -1,7 +1,7 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
   "name": "io.github.viridis-security/injection-detector",
-  "description": "Viridis MCP-02 - adversarial injection detector. Screens untrusted input for prompt/tool injection, exfiltration, and obfuscation before an agent consumes it. Returns verdict + probability + bits-at-risk + recommended action. Backed by Aristotle-verified theorems (T-IB-02/T-IB-06/T-IB-01).",
+  "description": "Viridis MCP-02 adversarial injection detector. Screens untrusted input for prompt/tool injection, exfiltration, and obfuscation before an agent consumes it. Returns verdict, probability, bits-at-risk, matched patterns, and a recommended action. Backed by Aristotle-verified theorems.",
   "version": "0.1.0",
   "repository": {
     "url": "https://github.com/viridis-security/mcp-services-sdk",
@@ -12,14 +12,5 @@
       "type": "streamable-http",
       "url": "https://mcp.viridis-security.com/mcp"
     }
-  ],
-  "_meta": {
-    "io.viridis": {
-      "auth": "Bearer API key (Authorization header). Free tier 1,000 calls/mo; sign up at https://mcp.viridis-security.com/signup",
-      "tools": ["detect_injection"],
-      "verifiedInvariants": ["T-IB-02 Adversarial Landauer Inequality", "T-IB-06 Detection Lower Bound", "T-IB-01 Attribution Conservation"],
-      "vendor": "Viridis North LLC",
-      "category": ["security", "ai-agents", "guardrails"]
-    }
-  }
+  ]
 }
