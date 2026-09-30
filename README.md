@@ -132,11 +132,11 @@ The SDK source under `sdk/` is the canonical implementation. Examples under `exa
 - **Terms of Service:** <https://mcp.viridis-security.com/terms>
 - **Privacy Policy:** <https://mcp.viridis-security.com/privacy>
 - **Corpus paper:** <https://github.com/viridis-security/corpus> (forthcoming)
-- **Maintained by:** [Viridis North LLC](https://viridis-security.com)
+- **Maintained by:** [Viridis LLC](https://viridis-security.com)
 
 ## Maintainers
 
-Maintained by Viridis North LLC. Issues and PRs welcome. For security disclosures, see [SECURITY.md](SECURITY.md).
+Maintained by Viridis LLC. Issues and PRs welcome. For security disclosures, see [SECURITY.md](SECURITY.md).
 
 For commercial inquiries (Enterprise tier, on-prem, cyber-insurance underwriting feed): viridissecurity1@gmail.com.
 
