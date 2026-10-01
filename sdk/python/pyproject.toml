@@ -9,7 +9,7 @@ description = "Python SDK for Viridis MCP services. Aristotle-verified attributi
 readme = "README.md"
 license = "Apache-2.0"
 authors = [
-    {name = "Viridis North LLC", email = "viridissecurity1@gmail.com"}
+    {name = "Viridis LLC", email = "viridissecurity1@gmail.com"}
 ]
 keywords = ["viridis", "mcp", "ai-security", "injection-detection", "agent-security", "alignment", "attribution"]
 classifiers = [

@@ -1,0 +1,26 @@
+# Viridis secret-scan configuration (open-core kit, 2026-09-28).
+# Keeps every gitleaks default rule and adds key formats the v8.21.2 defaults miss.
+# Repositories that already have a .gitleaks.toml: append only the [[rules]] block below.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "openai-api-key-modern"
+description = "OpenAI API key in project, service-account or admin format"
+regex = '''\bsk-(?:proj|svcacct|admin)-[A-Za-z0-9_-]{40,}'''
+keywords = ["sk-proj-", "sk-svcacct-", "sk-admin-"]
+
+[[rules]]
+id = "curl-auth-header"
+
+[[rules.allowlists]]
+description = "Reviewed non-secret baseline text in README.md (curl placeholder credentials)"
+condition = "AND"
+regexTarget = "line"
+paths = ['''^README\.md$''']
+regexes = [
+  '''(?m)^curl\ \-X\ POST\ https://mcp\.viridis\-security\.com/v1/signup\ \\\n\ \ \-H\ "Content\-Type:\ application/json"\ \\\n\ \ \-d\ '\{"email":"you@yourorg\.com","tier":"free"\}'\n\n\#\ 2\)\ Detect\ adversarial\ input\ncurl\ \-X\ POST\ https://mcp\.viridis\-security\.com/v1/injection/detect\ \\\n\ \ \-H\ "Authorization:\ Bearer\ YOUR_API_KEY"\ \\$''',
+  '''(?m)^curl\ \-X\ POST\ https://mcp\.viridis\-security\.com/v1/canon/scan\ \\\n\ \ \-H\ "Authorization:\ Bearer\ YOUR_API_KEY"\ \\$''',
+  '''(?m)^curl\ \-X\ POST\ https://mcp\.viridis\-security\.com/v1/injection/detect\ \\\n\ \ \-H\ 'authorization:\ Bearer\ vrd_live_\.\.\.'\ \\$''',
+]
