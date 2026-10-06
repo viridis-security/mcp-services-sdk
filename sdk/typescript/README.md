@@ -4,7 +4,7 @@
 
 ## Install and build from source
 
-As checked on October 6, 2026, `@viridis/mcp-client` has no public npm release. Build the public source and record the checkout commit instead. Use Git, Node.js 20, 22, or 24+ (a version supported by the development toolchain), and npm. The local verification uses Node.js 20.20.2. Dependency installation requires access to npm; the import check itself needs no API key or hosted service.
+As checked on October 6, 2026, `@viridis/mcp-client` has no public npm release. Build the public source and record the checkout commit instead. Use Git, Node.js 22 or 24 (versions supported by the development toolchain), and npm. Earlier local verification used Node.js 20.20.2; dedicated published-source CI checks Node.js 22 and 24. Dependency installation requires access to npm; the import check itself needs no API key or hosted service.
 
 ```bash
 git clone https://github.com/viridis-security/mcp-services-sdk.git
@@ -19,6 +19,8 @@ npm run build
 npm test
 node --input-type=module -e 'import { ViridisMCP } from "./dist/index.js"; console.log(typeof ViridisMCP)'
 ```
+
+After this repair is merged, omit the `git fetch` and detached-checkout lines to install the corrected default `main` source. While the PR is under review, retain those lines and record its commit.
 
 Expected local output: `function`. The SDK's committed npm lockfile fixes the development dependency graph. `npm ci --ignore-scripts` installs that exact graph without dependency lifecycle scripts; run `npm run build` explicitly afterward. The build emits `dist/index.js` and `dist/index.d.ts`, as declared in `package.json`.
 

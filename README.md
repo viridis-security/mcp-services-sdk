@@ -43,7 +43,7 @@ This is the public, open-source SDK for the [Viridis MCP](https://mcp.viridis-se
 
 ## Install the public SDK from source
 
-The canonical SDK source is present under `sdk/`; public registry releases are unavailable as checked on October 6, 2026. The installation repair is currently under review in PR #8 and is not yet on default `main`. The guides explicitly select the published PR checkout, record its commit and run a local import check:
+The canonical SDK source is present under `sdk/`; public registry releases are unavailable as checked on October 6, 2026. The installation repair is currently under review in PR #8 and is not yet on default `main`. After merge, the guides describe how to use corrected default `main` instead. The guides explicitly select the published PR checkout, record its commit and run a local import check:
 
 - [Python: virtual-environment source install and import](sdk/python/README.md#install-from-source).
 - [TypeScript: source build, local import, and installation into your application](sdk/typescript/README.md#install-and-build-from-source).

@@ -18,6 +18,8 @@ python3 -m venv .venv
 .venv/bin/python -c 'from viridis_mcp_client import ViridisMCP, AsyncViridisMCP, __version__; print(__version__)'
 ```
 
+After this repair is merged, omit the `git fetch` and detached-checkout lines to install the corrected default `main` source. While the PR is under review, retain those lines and record its commit.
+
 Expected local output: `0.1.0`. This imports the source package; it sends no request and requires no API key. Installing dependencies requires access to their package registry. To work on the source, use `.venv/bin/python -m pip install -e ./sdk/python` instead.
 
 ## Hosted usage requires a separate service check
