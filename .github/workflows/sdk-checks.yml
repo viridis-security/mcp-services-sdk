@@ -1,0 +1,89 @@
+name: SDK checks
+
+on:
+  push:
+    branches: [main, codex/wp-6-hosted-contract-hold]
+    paths: ['sdk/**', 'services/maxwell/reference/python/**', 'services/maxwell/wp6/**', '.github/workflows/sdk-checks.yml']
+  pull_request:
+    paths: ['sdk/**', 'services/maxwell/reference/python/**', 'services/maxwell/wp6/**', '.github/workflows/sdk-checks.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  typescript:
+    name: TypeScript SDK (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    defaults:
+      run:
+        working-directory: sdk/typescript
+    steps:
+      - name: Check out the actual source revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Set up supported Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          package-manager-cache: false
+      - name: Install the exact lock without dependency lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build the client
+        run: npm run build
+      - name: Strictly type-check source and client tests
+        run: npx --no-install tsc --noEmit --strict --target ES2022 --module ES2022 --moduleResolution Bundler --skipLibCheck src/index.ts tests/client.test.ts
+      - name: Run synthetic client tests without hosted requests
+        run: npm test
+      - name: Verify direct and separately installed package imports
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module -e 'import { ViridisMCP } from "./dist/index.js"; if (typeof ViridisMCP !== "function") process.exit(1)'
+          consumer_dir="$(mktemp -d "$RUNNER_TEMP/sdk-consumer.XXXXXX")"
+          package_name="$(npm pack --ignore-scripts --pack-destination "$consumer_dir" --silent)"
+          cd "$consumer_dir"
+          npm init --yes >/dev/null
+          npm install --ignore-scripts --no-audit --no-fund "./$package_name"
+          node --input-type=module -e 'import { ViridisMCP } from "@viridis/mcp-client"; if (typeof ViridisMCP !== "function") process.exit(1)'
+      - name: Audit all dependencies in the exact development lock
+        run: npm audit --audit-level=low
+
+  python:
+    name: Python SDK (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.9', '3.14']
+    steps:
+      - name: Check out the actual source revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install packaging and local test tools
+        run: python -m pip install --disable-pip-version-check build 'pytest>=8,<9'
+      - name: Build the source wheel and install it
+        run: |
+          python -m build --wheel --outdir "$RUNNER_TEMP/sdk-wheels" sdk/python
+          python -m pip install --disable-pip-version-check "$RUNNER_TEMP"/sdk-wheels/viridis_mcp_client-*.whl
+          python -m pip check
+      - name: Verify the installed import outside the source checkout
+        working-directory: ${{ runner.temp }}
+        run: python -c 'from viridis_mcp_client import ViridisMCP, AsyncViridisMCP; assert callable(ViridisMCP) and callable(AsyncViridisMCP)'
+      - name: Run the five local Python client tests
+        run: python -m pytest sdk/python/tests -q
+      - name: Preserve reference tests and explicit hosted-contract hold
+        env:
+          PYTHONPATH: services/maxwell/reference/python
+        run: python -m pytest services/maxwell/reference/python/tests services/maxwell/wp6/tests -q
