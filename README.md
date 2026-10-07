@@ -4,6 +4,8 @@
 
 [![pricing](https://img.shields.io/badge/pricing-free%20tier%20→%20%241%2C499%2Fmo-4ade80)](https://mcp.viridis-security.com/pricing) [![docs](https://img.shields.io/badge/docs-mcp.viridis--security.com%2Fdocs-7a8b7a)](https://mcp.viridis-security.com/docs) [![Aristotle verified](https://img.shields.io/badge/Aristotle-7%2F7%20theorems%20verified-4ade80)](https://github.com/viridis-security/corpus)
 
+> **SDK install status, October 6, 2026:** the source-declared packages `@viridis/mcp-client` (npm) and `viridis-mcp-client` (PyPI) returned package-metadata 404s. Use the [source-install instructions](#install-the-public-sdk-from-source). The local import checks need no API key; hosted use still requires separate authorization and a confirmed service contract. [Draft PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8) records that contract/implementation hold. The hosted examples below are not acceptance evidence.
+
 ## Try in 30 seconds
 
 ```bash
@@ -39,11 +41,18 @@ This is the public, open-source SDK for the [Viridis MCP](https://mcp.viridis-se
 >
 > ![Maxwell demo](services/maxwell/reference/docs/assets/maxwell-demo.gif)
 
-```bash
-npm install @viridis/mcp-client
-# or, for the standalone Maxwell reference:
-pip install git+https://github.com/viridis-security/maxwells-defense.git
-```
+## Install the public SDK from source
+
+The canonical SDK source is present under `sdk/`; public registry releases are unavailable as checked on October 6, 2026. The installation repair is currently under review in PR #8 and is not yet on default `main`. After merge, the guides describe how to use corrected default `main` instead. The guides explicitly select the published PR checkout, record its commit and run a local import check:
+
+- [Python: virtual-environment source install and import](sdk/python/README.md#install-from-source).
+- [TypeScript: source build, local import, and installation into your application](sdk/typescript/README.md#install-and-build-from-source).
+
+Those checks prove only local packaging/importability. They make no hosted call, need no API key, and do not verify the proprietary service or its response/billing contract. Hosted integration still requires a valid service-issued key and resolution of the authoritative-contract gate tracked in [PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8).
+
+The standalone Maxwell reference is a separate package and scope. Its [repository installation instructions](https://github.com/viridis-security/maxwells-defense#readme) describe that source path; installing it does not install this SDK.
+
+The following TypeScript example assumes you have installed the built SDK into your application using its local-directory instructions and have separately confirmed hosted access.
 
 ```typescript
 import { ViridisMCP } from "@viridis/mcp-client";
@@ -104,8 +113,8 @@ Full pricing: <https://mcp.viridis-security.com/#pricing>.
 
 ```
 sdk/
-├── typescript/    # @viridis/mcp-client npm package (Apache-2.0)
-└── python/        # viridis-mcp-client pypi (shipping next)
+├── typescript/    # @viridis/mcp-client source package (Apache-2.0)
+└── python/        # viridis-mcp-client source package (Apache-2.0)
 
 services/          # Per-service API documentation
 ├── injection-detector/
