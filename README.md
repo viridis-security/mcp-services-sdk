@@ -4,7 +4,7 @@
 
 [![pricing](https://img.shields.io/badge/pricing-free%20tier%20→%20%241%2C499%2Fmo-4ade80)](https://mcp.viridis-security.com/pricing) [![docs](https://img.shields.io/badge/docs-mcp.viridis--security.com%2Fdocs-7a8b7a)](https://mcp.viridis-security.com/docs) [![Aristotle verified](https://img.shields.io/badge/Aristotle-7%2F7%20theorems%20verified-4ade80)](https://github.com/viridis-security/corpus)
 
-> **SDK install status, October 6, 2026:** the source-declared packages `@viridis/mcp-client` (npm) and `viridis-mcp-client` (PyPI) returned package-metadata 404s. Use the [source-install instructions](#install-the-public-sdk-from-source). The local import checks need no API key; hosted use still requires separate authorization and a confirmed service contract. [Draft PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8) records that contract/implementation hold. The hosted examples below are not acceptance evidence.
+> **SDK install status, October 6, 2026:** the source-declared packages `@viridis/mcp-client` (npm) and `viridis-mcp-client` (PyPI) returned package-metadata 404s. Use the [source-install instructions](#install-the-public-sdk-from-source). The local import checks need no API key; hosted use still requires separate authorization and a confirmed service contract. [Merged source-install PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8) records that contract/implementation hold. The hosted examples below are not acceptance evidence.
 
 ## Try in 30 seconds
 
@@ -43,7 +43,7 @@ This is the public, open-source SDK for the [Viridis MCP](https://mcp.viridis-se
 
 ## Install the public SDK from source
 
-The canonical SDK source is present under `sdk/`; public registry releases are unavailable as checked on October 6, 2026. The installation repair is currently under review in PR #8 and is not yet on default `main`. After merge, the guides describe how to use corrected default `main` instead. The guides explicitly select the published PR checkout, record its commit and run a local import check:
+The canonical SDK source is present under `sdk/`; public registry releases are unavailable as checked on October 6, 2026. The source-install repair merged in [PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8) and is available on default `main`. The guides install that source, record its checkout commit and run a local import check:
 
 - [Python: virtual-environment source install and import](sdk/python/README.md#install-from-source).
 - [TypeScript: source build, local import, and installation into your application](sdk/typescript/README.md#install-and-build-from-source).
