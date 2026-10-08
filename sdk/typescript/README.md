@@ -9,9 +9,6 @@ As checked on October 6, 2026, `@viridis/mcp-client` has no public npm release. 
 ```bash
 git clone https://github.com/viridis-security/mcp-services-sdk.git
 cd mcp-services-sdk
-# This repair is under review in PR #8; default main is not yet corrected.
-git fetch origin pull/8/head
-git checkout --detach FETCH_HEAD
 git rev-parse HEAD
 cd sdk/typescript
 npm ci --ignore-scripts
@@ -20,7 +17,7 @@ npm test
 node --input-type=module -e 'import { ViridisMCP } from "./dist/index.js"; console.log(typeof ViridisMCP)'
 ```
 
-After this repair is merged, omit the `git fetch` and detached-checkout lines to install the corrected default `main` source. While the PR is under review, retain those lines and record its commit.
+The source-install repair merged in [PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8); these instructions use default `main`. Record the checkout commit printed by `git rev-parse HEAD` so the installed source can be identified.
 
 Expected local output: `function`. The SDK's committed npm lockfile fixes the development dependency graph. `npm ci --ignore-scripts` installs that exact graph without dependency lifecycle scripts; run `npm run build` explicitly afterward. The build emits `dist/index.js` and `dist/index.d.ts`, as declared in `package.json`.
 
@@ -35,7 +32,7 @@ Build the SDK before installing the local directory. This retains the package-na
 
 ## Hosted usage requires a separate service check
 
-Calling `injection.detect` needs a valid service-issued API key and the proprietary hosted service. The local build/import check sends no request and proves no hosted response, billing, availability, or theorem guarantee. [Draft PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8) tracks the missing authoritative hosted implementation/contract; its skipped acceptance stubs are not passing hosted tests. Treat the existing example below as client-interface usage, not verified hosted acceptance.
+Calling `injection.detect` needs a valid service-issued API key and the proprietary hosted service. The local build/import check sends no request and proves no hosted response, billing, availability, or theorem guarantee. [Merged source-install PR #8](https://github.com/viridis-security/mcp-services-sdk/pull/8) tracks the missing authoritative hosted implementation/contract; its skipped acceptance stubs are not passing hosted tests. Treat the existing example below as client-interface usage, not verified hosted acceptance.
 
 ```typescript
 import { ViridisMCP } from "@viridis/mcp-client";
